@@ -6,6 +6,23 @@ const userService = require("../../../services/userService");
 const jwt = require("jsonwebtoken")
 
 module.exports = {
+  registerAdmin(req, res) {
+    userService
+      .createAdmin(req.body)
+      .then((user) => {
+        res.status(201).json({
+          status: "OK",
+          data: user,
+        });
+      })
+      .catch((err) => {
+        res.status(422).json({
+          status: "FAIL",
+          message: err.message,
+        });
+      });
+  },
+
   register(req, res) {
     userService
       .create(req.body)
@@ -43,6 +60,7 @@ module.exports = {
             id: user.data.id,
             name: user.data.name,
             email: user.data.email,
+            userRole: user.data.userRole,
             token: user.data.token
           }
         });
@@ -63,9 +81,26 @@ module.exports = {
 
       const tokenPayload = jwt.verify(token, "secret");
 
-      console.log("tokenPayload", tokenPayload);
+      req.user = tokenPayload;
 
       next();
+    } catch (err) {
+      console.log(err)
+      res.status(401).json({
+        message: "unauthorized",
+      });
+    }
+
+
+  },
+  superAdmin(req, res, next) {
+    try {
+      const { userRole } = req.user;
+      if (userRole === "superAdmin") return next();
+      res.status(403).json({
+        message: "Anda tidak memiliki akses",
+      });
+
     } catch (err) {
       console.log(err)
       res.status(401).json({

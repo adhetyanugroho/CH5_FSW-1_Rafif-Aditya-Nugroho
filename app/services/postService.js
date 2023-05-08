@@ -1,13 +1,24 @@
 const postRepository = require("../repositories/postRepository");
 
 module.exports = {
-  create(requestBody) {
-    return postRepository.create(requestBody);
+  create(request) {
+    const { name, price, size, image } = request.body;
+    const { id } = request.user;
+    return postRepository.create({ name, price, size, image, createdBy: id });
   },
 
-  update(id, requestBody) {
-    return postRepository.update(id, requestBody);
+  update(id, request) {
+    const { name, price, size, image } = request.body;
+    const { idUser } = request.user;
+    return postRepository.update({ name, price, size, image, updatedBy: idUser }, { where: { id } });
   },
+
+  // update(id, request) {
+  //   const { name, price, size, image } = request.body;
+  //   const { idUser } = request.user;
+  //   const { idCar } = request.params.id;
+  //   return postRepository.update({ name, price, size, image, updatedBy: idUser }, { where: { id: idCar } });
+  // },
 
   delete(id) {
     return postRepository.delete(id);

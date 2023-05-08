@@ -26,6 +26,16 @@ const createToken = (payload) => {
 }
 
 module.exports = {
+  async createAdmin(requestBody) {
+    const { name, email, password } = requestBody;
+
+    const encryptedPassword = await encryptPassword(password);
+
+    console.log("encryptedPassword", encryptedPassword);
+
+    return userRepository.create({ name, email, encryptedPassword, userRole: "admin" });
+  },
+
   async create(requestBody) {
     const { name, email, password } = requestBody;
 
@@ -33,7 +43,7 @@ module.exports = {
 
     console.log("encryptedPassword", encryptedPassword);
 
-    return userRepository.create({ name, email, encryptedPassword });
+    return userRepository.create({ name, email, encryptedPassword, userRole: "member" });
   },
 
   async login(requestBody) {
@@ -61,8 +71,7 @@ module.exports = {
 
     const token = createToken({
       id: user.id,
-      name: user.name,
-      email: user.email
+      userRole: user.userRole,
     })
 
     user.token = token;
@@ -89,7 +98,7 @@ module.exports = {
   async list() {
     try {
       const users = await userRepository.findAll();
-      const userCount = await userRepository.getTotalPost();
+      const userCount = await userRepository.getTotalUser();
 
       return {
         data: users,
