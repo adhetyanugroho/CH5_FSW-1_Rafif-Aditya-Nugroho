@@ -44,7 +44,7 @@ apiRouter.delete("/api/v1/cars/:id", controllers.api.v1.authController.authorize
 apiRouter.get("/api/v1/cars", controllers.api.v1.authController.authorize, controllers.api.v1.postController.list);
 
 //endpoint untuk melihat current user dari token yang dimiliki.
-apiRouter.get("/api/v1/users", controllers.api.v1.authController.authorize, controllers.api.v1.userController.list);
+apiRouter.get("/api/v1/users/me", controllers.api.v1.authController.authorize, controllers.api.v1.userController.whoAmI);
 
 /**
  * TODO: Delete this, this is just a demonstration of

@@ -73,6 +73,19 @@ module.exports = {
       });
   },
 
+  whoAmI(req, res) {
+    const user = req.user;
+    res.status(200).json({
+      status: "Success",
+      data: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      }
+    });
+  },
+
   destroy(req, res) {
     userService
       .delete(req.params.id)
@@ -86,4 +99,5 @@ module.exports = {
         });
       });
   },
+
 };
