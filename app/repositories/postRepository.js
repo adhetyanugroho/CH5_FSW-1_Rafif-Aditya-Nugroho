@@ -5,28 +5,37 @@ module.exports = {
     return Cars.create(createArgs);
   },
 
-  update(id, updateArgs) {
-    return Cars.update(updateArgs, {
+
+  update(id, updatedPost) {
+    return Cars.update(updatedPost, {
       where: {
-        id,
+        id: id,
       },
     });
   },
 
-  delete(id) {
+
+  delete(id, deletedBy) {
     return Cars.destroy({
       where: {
         id,
-      }
+        deletedBy, // Menggunakan ID penghapus (deletedBy) sebagai kondisi tambahan
+      },
     });
   },
 
+
   find(id) {
-    return Cars.findByPk(id);
+    return Cars.findByPk(id, {
+      attributes: ['id', 'name', 'price', 'size', 'createdBy', 'updatedBy', 'deletedBy'],
+    });
   },
 
+
   findAll() {
-    return Cars.findAll();
+    return Cars.findAll({
+      attributes: ['id', 'name', 'price', 'size', 'createdBy', 'updatedBy', 'deletedBy'],
+    });
   },
 
   getTotalPost() {

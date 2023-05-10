@@ -40,12 +40,20 @@ module.exports = {
       });
   },
 
+
   update(req, res) {
+    const { id } = req.params;
+    const { name, price, size, image, user } = req.body;
+    const updatedPost = { name, price, size, image, updatedBy: user && user.idUser };
+
     postService
-      .update(req.params.id, req)
-      .then(() => {
+      .update(id, updatedPost)
+      .then((updatedPost) => {
         res.status(200).json({
           status: "OK",
+          message: `Successfully updated by ${id}.`,
+          data: updatedPost,
+
         });
       })
       .catch((err) => {
@@ -73,11 +81,16 @@ module.exports = {
       });
   },
 
+
   destroy(req, res) {
+    const deletedBy = req.user.id;
     postService
-      .delete(req.params.id)
+      .delete(req.params.id, deletedBy)
       .then(() => {
-        res.status(204).end();
+        res.status(200).json({
+          status: "OK",
+          message: `Successfully deleted by ${deletedBy}.`,
+        });
       })
       .catch((err) => {
         res.status(422).json({
@@ -86,4 +99,6 @@ module.exports = {
         });
       });
   },
+
+
 };

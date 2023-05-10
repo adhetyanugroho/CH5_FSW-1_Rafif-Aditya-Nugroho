@@ -1,7 +1,14 @@
 const express = require("express");
 const controllers = require("../app/controllers");
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../docs/CarAPI.json');
+const cors = require('cors');
 const apiRouter = express.Router();
+
+apiRouter.use(cors());
+
+apiRouter.use('/api-docs', swaggerUi.serve);
+apiRouter.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 /**
  * TODO: Implement your own API

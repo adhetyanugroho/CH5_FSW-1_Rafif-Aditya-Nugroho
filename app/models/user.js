@@ -11,10 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
       this.hasMany(models.Cars, {
         foreignKey: "createdBy",
-      })
+      });
+      this.hasMany(models.Cars, {
+        foreignKey: "updatedBy",
+      });
+      this.hasMany(models.Cars, {
+        foreignKey: "deletedBy",
+      });
+
     }
   }
   User.init({

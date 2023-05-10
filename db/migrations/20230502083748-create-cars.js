@@ -4,49 +4,52 @@ module.exports = {
     await queryInterface.createTable("Cars", {
       id: {
         allowNull: false,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        autoIncrement: true,
+        // type: Sequelize.UUID,
+        // defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        // type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       size: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT,
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT,
       },
       createdBy: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: {
-            tableName: "Users",
+            tableName: 'Users'
           },
-          key: "id",
+          key: 'id'
         }
       },
       updatedBy: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: {
-            tableName: "Users",
+            tableName: 'Users'
           },
-          key: "id",
+          key: 'id'
         }
       },
       deletedBy: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: {
-            tableName: "Users",
+            tableName: 'Users'
           },
-          key: "id",
+          key: 'id'
         }
       },
       createdAt: {

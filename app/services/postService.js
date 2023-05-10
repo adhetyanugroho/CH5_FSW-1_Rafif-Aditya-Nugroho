@@ -7,22 +7,35 @@ module.exports = {
     return postRepository.create({ name, price, size, image, createdBy: id });
   },
 
-  update(id, request) {
-    const { name, price, size, image } = request.body;
-    const { idUser } = request.user;
-    return postRepository.update({ name, price, size, image, updatedBy: idUser }, { where: { id } });
-  },
-
-  // update(id, request) {
-  //   const { name, price, size, image } = request.body;
-  //   const { idUser } = request.user;
-  //   const { idCar } = request.params.id;
-  //   return postRepository.update({ name, price, size, image, updatedBy: idUser }, { where: { id: idCar } });
+  // update(id, requestBody) {
+  //   return postRepository.update(id, requestBody);
   // },
 
-  delete(id) {
-    return postRepository.delete(id);
+  update(id, requestBody) {
+    const { name, price, size, image, user } = requestBody;
+    const idUser = user && user.idUser;
+
+    const updatedPost = {
+      name,
+      price,
+      size,
+      image,
+      updatedBy: idUser
+    };
+
+    return postRepository.update(id, updatedPost)
+      .then(() => updatedPost);
   },
+
+
+  // delete(id) {
+  //   return postRepository.delete(id);
+  // },
+
+  delete(id, deletedBy) {
+    return postRepository.delete(id, deletedBy);
+  },
+
 
   async list() {
     try {
