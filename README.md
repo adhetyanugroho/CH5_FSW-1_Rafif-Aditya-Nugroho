@@ -25,15 +25,23 @@ http://localhost:8000/api/v1/login
 http://localhost:8000/api/v1/users/me
 
 
-Endpoint untuk melakukan CRUD terhadap data mobil
+**Endpoint untuk melakukan CRUD terhadap data mobil**
+> Endpoint: GET /cars (List mobil yang tersedia)
 http://localhost:8000/api/v1/cars
+
+> Endpoint: POST /cars (Create Cars)
 http://localhost:8000/api/v1/cars/create
+
+> Endpoint: GET /cars/{id} (Get Cars by ID) 
 http://localhost:8000/api/v1/cars/:id
+
+> Endpoint: PUT /cars/{id} (Update Cars by ID)
 http://localhost:8000/api/v1/cars/:id
+
+> Endpoint: DELETE /cars/{id} (Delete Cars by ID)
 http://localhost:8000/api/v1/cars/:id
 
 
-Endpoint untuk melihat daftar mobil yang tersedia.
-http://localhost:8000/api/v1/cars
+
 
 
