@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 # CH5_FSW-1_Rafif-Aditya-Nugroho
 
@@ -9,20 +8,20 @@ password:superadmin123
 
 ## OPEN API Documentation
 
-Endpoint Open APi Documentation Swagger.io
+**Endpoint Open APi Documentation Swagger.io**
 http://localhost:8000/api-docs
 
-Endpoint untuk registrasi admin oleh superAdmin
+**Endpoint untuk registrasi admin oleh superAdmin**
 http://localhost:8000/api/v1/register/admin
 
-Endpoint untuk registrasi sebagai member.
+**Endpoint untuk registrasi sebagai member**
 http://localhost:8000/api/v1/register
 
 
-Endpoint untuk login sebagai superadmin, admin, maupun member.
+**Endpoint untuk login sebagai superadmin, admin, maupun member**
 http://localhost:8000/api/v1/login
 
-Endpoint untuk melihat current user dari token yang dimiliki.
+**Endpoint untuk melihat current user dari token yang dimiliki**
 http://localhost:8000/api/v1/users/me
 
 
@@ -37,4 +36,4 @@ http://localhost:8000/api/v1/cars/:id
 Endpoint untuk melihat daftar mobil yang tersedia.
 http://localhost:8000/api/v1/cars
 
-=======
+
