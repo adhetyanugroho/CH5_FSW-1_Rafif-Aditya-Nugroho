@@ -42,6 +42,9 @@ http://localhost:8000/api/v1/cars/:id
 http://localhost:8000/api/v1/cars/:id
 
 
+## ERD 
+![ERD_Challenge Chapter 5](https://github.com/adhetyanugroho/CH5_FSW-1_Rafif-Aditya-Nugroho/assets/110434742/09419189-5f41-40c9-a87e-85f1479defb6)
+
 
 
 
